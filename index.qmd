@@ -1,0 +1,278 @@
+---
+title: "A Importancia do Estudo do Bilinguismo"
+author: "Robert Esposito"
+institute: "Rutgers University"
+date: "Last update: `r Sys.Date()`"
+format: rutgers-revealjs
+engine: knitr
+execute: 
+  out.width: "100%"
+  fig.asp: 0.5625
+  dpi: 300
+  wrap: 72
+---
+```{r}
+# load libs
+
+library(here)
+library(tidyverse)
+library(treemapify)
+```
+
+##
+
+<center>
+[50%-70%]{.p-font style="font-size: 6em; color: #cc0033"}  
+[da população do mundo é bilingue]{style="font-size: 1.8em;"}
+</center>
+
+::: footer
+@grosjean2021life
+:::
+
+##
+
+```{r}
+#| include: false
+nj_lang <- tribble(
+  ~Language,     ~Speakers, ~Percent,
+  "Espanhol",    1368165,   16.35,
+  "Chinês",       119892,    1.43,
+  "Português",     84801,    1.01,
+  "Gujarati",      80552,    0.96,
+  "Hindi",         79659,    0.95,
+  "Tagalo",        75711,    0.90,
+  "Coreano",       75298,    0.90,
+  "Árabe",         71366,    0.85,
+  "Italiano",      60075,    0.72,
+  "Polonês",       59210,    0.71
+)
+
+```
+
+```{r}
+#| echo: false
+
+ggplot(nj_lang, aes(
+  area = Percent,
+  fill = Language,
+  label = paste0(Language, "\n", Percent, "%")
+)) +
+  geom_treemap() +
+  geom_treemap_text(color = "white", place = "centre", grow = TRUE) +
+  labs(title = "As línguas mais comuns em New Jersey") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+::: footer
+https://acutrans.com/top-10-languages-of-new-jersey/
+:::
+
+## 
+
+```{r}
+#| include: false
+
+nj_pt <- tribble(
+  ~Country,      ~Speakers,
+  "Portugal",     76013,
+  "Brazil",       51266,
+  "Cape Verde",    1166
+) %>%
+  mutate(
+    Percent = Speakers / sum(Speakers) * 100
+  )
+
+```
+
+```{r}
+ggplot(nj_pt, aes(x = "", y = Percent, fill = Country)) +
+  geom_col(width = 1, color = "white") +
+  coord_polar(theta = "y") +
+  geom_text(
+    aes(label = Speakers),
+    position = position_stack(vjust = 0.5),
+    color = "white",
+    size = 5
+  ) +
+  labs(fill = NULL,
+       title = "Número das pessoas com origem de X em New Jersey") +
+  theme_void() +
+  theme(
+    legend.position = "right"
+  )
+```
+
+::: footer
+https://data.census.gov/table/ACSDT1Y2022.B04006?q=ancestry&g=010XX00US_040XX00US34_050XX00US34013
+:::
+
+# Desenvolvimento linguística (ou, tornando-se um falante nativo) {.transition}
+
+##
+
+::: {.fragment}
+Os bebés produzem suas [primeiras palavras]{.emph} com [um ano]{.emph} de idade
+:::
+
+::: {.fragment}
+... mais a produção [subestime]{.emph} o seu conhecimento linguística
+:::
+
+::: {.fragment}
+O processo de aprender começe [antes de nascer]{.emph} [@may2011language]
+:::
+
+::: {.fragment .fade-up}
+Como é [possivel]{.emph} e como [sabemos]{.emph}?
+:::
+
+##
+
+::: {.incremental}
+
+No terceiro trimestre...
+
+- o batimento cardíaco do feto [aumenta]{.emph} ao ouvir [a voz do seu mãe]{.emph}, mas não as vozes de outras pessoas
+
+Bebés recien nascidos (0-3 dias de idade)...
+
+- podem identificar a sua língua versus outros soms parecidos que não representam linguagem humano [@may2011language]
+
+- estão sensiveis as [fronteiras das palavras]{.emph} [@christophe1994infants]
+
+:::
+
+# Os Bebés Bilingualismo {.transition}
+
+##
+
+::: incremental
+
+- Os jovems bilingues são sobreidentificados com um trastorno de lenguagem [@anderson2012first]
+
+- Tira recursos dos meninos que realmente precisam de ajuda
+
+- Corre o riesgo de estar atrapados em aulas de inglês como segunda lengua
+
+:::
+
+::: fragment
+
+- Mais por qué é assim?
+
+:::
+
+## Co-ativação semántica
+
+::: {.fragment}
+Nossas línguas estão [conectados]{.emph}
+:::
+
+::: {.fragment}
+Se estou falando Portugues, tenho que inhibir o inglês e o espanhol...
+:::
+
+::: {.fragment}
+mais elas ainda estão lutando para ativar!
+
+:::
+
+::: {.fragment}
+Se escuto a palavra "cachorro", a mesma palavra vai ativar em espanhol e inglês
+:::
+
+## Co-ativação fonética
+
+:::: {.column}
+
+
+
+::: {.fragment}
+![](assets/coactivate-match.bmp)
+:::
+
+::: {.fragment}
+![](assets/coactivate-mismatch.bmp)
+:::
+
+::: {.fragment}
+| Imagem  | Português   | Soa como a palavra... | Palavra desconectada |
+|:---------|:----------|:---------------|:-----------|
+| mão | mão | mound | bicycle |
+| pão | pão | pound | elephant |
+:::
+
+::: footer
+@desroches2022dynamics
+:::
+
+## As consequencias...
+
+::: {.fragment}
+Os bilingues são [mais lento]{.emph} ao dizer o nome de uma imagem do que os monolingues [@sullivan2018lexical]
+
+:::
+
+::: {.fragment}
+O vocabulário de um menino bilingue está dividido entre as duas línguas
+
+:::
+
+::: {.fragment}
+E como medimos o desenvolvimento linguística de um menino na escola?
+
+:::
+
+::: {.fragment}
+- tarefas de nomeação de figuras
+
+- medidas de vocabulário só em inglês
+
+:::
+
+## Obrigado! {.final visibility="uncounted"}
+
+![](https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/164.png){.absolute top="0" right="0" width="55" height="55"}
+
+</br>
+
+
+<br>
+
+<table style="border-collapse: collapse; border: none;">
+  <tr>
+    <td style="text-align: right; padding-right: 10px;">
+      <a href="mailto:rme70@scarletmail.rutgers.edu">{{< fa solid envelope >}}</a>
+    </td>
+    <td>rme70@scarletmail.rutgers.edu</td>
+  </tr>
+
+  <tr>
+    <td style="text-align: right; padding-right: 10px;">
+      <a href="https://www.jvcasillas.com/quarto-rutgers-theme/">{{< fa solid link >}}</a>
+    </td>
+    <td>jvcasillas.com/quarto-rutgers-theme</td>
+  </tr>
+
+  <tr>
+    <td style="text-align: right; padding-right: 10px;">
+      <a href="https://robertespo.github.io/">{{< fa solid link >}}</a>
+    </td>
+    <td>robertespo.github.io</td>
+  </tr>
+
+  <tr>
+    <td style="text-align: right; padding-right: 10px;">
+      <a href="https://github.com/RobertEspo">{{< fa brands github >}}</a>
+    </td>
+    <td>\@RobertEspo</td>
+  </tr>
+</table>
+
+## Referencias {visibility="uncounted"}
+
+::: {#refs .smaller}
+:::

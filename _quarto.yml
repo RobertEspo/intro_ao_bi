@@ -1,0 +1,9 @@
+project:
+  title: "A Importancia do Estudo do Bilinguismo"
+  render:
+    - "*.qmd"
+    - "!./docs/lit/"
+    - "README.qmd"
+
+bibliography: ./lit/intro_to_psycho.bib
+csl: ./lit/apa.csl
